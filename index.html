@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3f5">
+  <meta name="description" content="ARAH membantu mengubah kebingungan menjadi langkah kecil yang bisa dilakukan hari ini.">
+  <meta name="application-name" content="ARAH">
+  <title>ARAH — Teman Langkah Sehari-hari</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navigasi utama">
+      <a class="brand" href="#beranda" aria-label="ARAH, beranda" data-nav="home">
+        <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 34 31H6L20 4Z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M20 14v11m0 0 5-5m-5 5-5-5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><strong>ARAH</strong><small>teman langkahmu</small></span>
+      </a>
+      <div class="sidebar-label">RUANG KERJAMU</div>
+      <nav class="nav-list">
+        <button class="nav-link active" data-nav="home"><span class="nav-icon">⌂</span><span>Beranda</span><span class="nav-indicator"></span></button>
+        <button class="nav-link" data-nav="ai"><span class="nav-icon">✧</span><span>Arah Cerdas</span><span class="nav-indicator"></span></button>
+        <button class="nav-link" data-nav="steps"><span class="nav-icon">◷</span><span>Langkah saya</span><span class="nav-count" id="side-step-count">0</span></button>
+        <button class="nav-link" data-nav="notes"><span class="nav-icon">▤</span><span>Catatan</span></button>
+        <button class="nav-link" data-nav="habits"><span class="nav-icon">✳</span><span>Rutinitas</span></button>
+        <button class="nav-link" data-nav="guides"><span class="nav-icon">◇</span><span>Panduan praktis</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="gentle-card">
+          <span class="gentle-spark">✦</span>
+          <p>Pelan tidak apa-apa. Yang penting kamu tahu langkah berikutnya.</p>
+          <span class="gentle-foot">— ARAH</span>
+        </div>
+        <button class="nav-link settings-link" data-nav="settings"><span class="nav-icon">⚙</span><span>Pengaturan</span></button>
+        <div class="privacy-mini"><span class="privacy-dot"></span> Data tersimpan di perangkat ini</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark small"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 34 31H6L20 4Z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M20 14v11m0 0 5-5m-5 5-5-5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>ARAH</strong></div>
+        <div class="breadcrumb"><span>Ruang pribadi</span><span class="crumb-slash">/</span><strong id="page-crumb">Beranda</strong></div>
+        <div class="top-actions">
+          <button class="icon-button" id="search-open" aria-label="Cari di ARAH" title="Cari"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg></button>
+          <button class="avatar-button" id="profile-open" aria-label="Buka pengaturan">A</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home" data-page="home">
+        <div class="welcome-row">
+          <div><p class="eyebrow" id="today-label">HARI INI</p><h1 id="greeting">Selamat datang.</h1><p class="subheading">Kamu tidak harus menyelesaikan semuanya sekaligus.</p></div>
+          <div class="day-chip"><span class="day-sun">☼</span><span id="date-display">Hari yang baru</span></div>
+        </div>
+
+        <section class="hero-card">
+          <div class="hero-copy">
+            <div class="hero-kicker"><span class="kicker-dot"></span> MULAI DARI SINI</div>
+            <h2>Apa yang sedang ingin<br class="desktop-break"> kamu bereskan?</h2>
+            <p>Ceritakan saja dengan bahasamu sendiri. Kita ubah jadi langkah yang lebih ringan.</p>
+            <form class="capture-form" id="quick-capture-form">
+              <label class="sr-only" for="quick-capture">Tulis hal yang ingin kamu lakukan</label>
+              <input id="quick-capture" type="text" maxlength="240" autocomplete="off" placeholder="Contoh: Aku ingin mulai belajar bahasa Inggris…">
+              <button type="submit" class="capture-submit" aria-label="Buat peta langkah"><span>↗</span></button>
+            </form>
+            <div class="capture-hints"><span>Misalnya:</span><button data-example="Aku ingin lebih teratur mengatur uang">Atur uang</button><button data-example="Aku mau menyiapkan diri untuk wawancara kerja">Persiapan kerja</button><button data-example="Aku ingin mulai kebiasaan membaca">Bangun kebiasaan</button></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="art-sun"></div><div class="art-path"><span></span><span></span><span></span></div>
+            <div class="art-card art-card-top"><span class="art-check">✓</span><div><b>Satu langkah</b><small>lebih dekat dari kemarin</small></div></div>
+            <div class="art-card art-card-bottom"><span class="art-star">✦</span><div><b>Mulai dari kecil</b><small>kemajuan tetap kemajuan</small></div></div>
+          </div>
+        </section>
+
+        <div class="quick-tools" aria-label="Fitur cepat">
+          <button class="quick-tool" data-action="plan"><span class="quick-icon lavender">✧</span><span><b>Susun tujuan</b><small>Pecah jadi langkah</small></span><span class="quick-arrow">↗</span></button>
+          <button class="quick-tool" data-action="note"><span class="quick-icon peach">▤</span><span><b>Simpan catatan</b><small>Jangan sampai lupa</small></span><span class="quick-arrow">↗</span></button>
+          <button class="quick-tool" data-action="decision"><span class="quick-icon mint">⇄</span><span><b>Bantu memilih</b><small>Bandingkan pilihan</small></span><span class="quick-arrow">↗</span></button>
+          <button class="quick-tool" data-action="habit"><span class="quick-icon yellow">✳</span><span><b>Buat rutinitas</b><small>Bangun pelan-pelan</small></span><span class="quick-arrow">↗</span></button>
+        </div>
+
+        <div class="section-heading overview-heading"><div><p class="eyebrow">GAMBARAN SINGKAT</p><h2>Ruang gerakmu</h2></div><button class="text-link" data-nav="steps">Lihat semua langkah <span>→</span></button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon stat-violet">◷</span><div><span class="stat-label">Langkah aktif</span><strong id="stat-active">0</strong><small>yang masih menunggu</small></div><span class="stat-decoration">01</span></article>
+          <article class="stat-card"><span class="stat-icon stat-green">✓</span><div><span class="stat-label">Selesai hari ini</span><strong id="stat-done">0</strong><small>kemajuan kecilmu</small></div><span class="stat-decoration">02</span></article>
+          <article class="stat-card"><span class="stat-icon stat-orange">✦</span><div><span class="stat-label">Rutinitas hari ini</span><strong id="stat-habits">0/0</strong><small>yang sudah kamu tandai</small></div><span class="stat-decoration">03</span></article>
+        </div>
+
+        <div class="home-columns">
+          <section class="panel next-panel">
+            <div class="panel-heading"><div><p class="eyebrow">LANGKAH BERIKUTNYA</p><h3>Mulai dari satu hal</h3></div><span class="panel-symbol">↗</span></div>
+            <div id="next-step-content" class="next-step-content"></div>
+          </section>
+          <section class="panel reflection-panel">
+            <div class="reflection-icon">✺</div><p class="eyebrow">PENGINGAT LEMBUT</p><h3>Kamu boleh mulai<br>lagi kapan saja.</h3><p>Hari yang tidak produktif bukan berarti kamu gagal. Pilih satu hal kecil yang masih mungkin dilakukan.</p><button class="reflection-action" data-action="plan">Cari langkah kecil <span>→</span></button>
+          </section>
+        </div>
+
+        <section class="guides-preview">
+          <div class="section-heading"><div><p class="eyebrow">BEKAL SEHARI-HARI</p><h2>Ide kecil, dampak nyata</h2></div><button class="text-link" data-nav="guides">Jelajahi panduan <span>→</span></button></div>
+          <div class="guide-preview-grid" id="home-guides"></div>
+        </section>
+        <footer class="page-footer"><span>ARAH © <span class="year-now"></span></span><span>Dibuat untuk membantumu menjalani hidup, bukan menguasainya.</span></footer>
+      </section>
+
+      <section class="page" id="page-steps" data-page="steps">
+        <div class="page-intro"><div><p class="eyebrow">SATU PER SATU</p><h1>Langkah saya</h1><p class="subheading">Tujuan besar terasa lebih dekat saat dipecah menjadi tindakan kecil.</p></div><button class="primary-button" data-action="plan"><span>＋</span> Buat peta langkah</button></div>
+        <div class="filter-bar"><div class="filter-tabs" id="step-filters"><button class="filter-tab selected" data-filter="all">Semua</button><button class="filter-tab" data-filter="active">Belum selesai</button><button class="filter-tab" data-filter="done">Selesai</button></div><span class="filter-total" id="step-total">0 langkah</span></div>
+        <div class="task-list" id="task-list"></div>
+      </section>
+
+      <section class="page" id="page-notes" data-page="notes">
+        <div class="page-intro"><div><p class="eyebrow">TEMPAT MENYIMPAN PIKIRAN</p><h1>Catatan</h1><p class="subheading">Ide, hal penting, dan pengingat yang ingin kamu simpan.</p></div><button class="primary-button" data-action="note"><span>＋</span> Catatan baru</button></div>
+        <div class="inline-search"><span>⌕</span><input type="search" id="note-search" placeholder="Cari catatan…" aria-label="Cari catatan"></div>
+        <div class="notes-grid" id="notes-grid"></div>
+      </section>
+
+      <section class="page" id="page-habits" data-page="habits">
+        <div class="page-intro"><div><p class="eyebrow">SEDIKIT DEMI SEDIKIT</p><h1>Rutinitas</h1><p class="subheading">Pilih kebiasaan yang berarti bagimu. Tidak perlu mengejar sempurna.</p></div><button class="primary-button" data-action="habit"><span>＋</span> Rutinitas baru</button></div>
+        <div class="habit-summary" id="habit-summary"></div>
+        <div class="section-heading"><div><p class="eyebrow">DAFTAR KECILMU</p><h2>Hari ini</h2></div><span class="today-date-small" id="habit-date"></span></div>
+        <div class="habit-list" id="habit-list"></div>
+      </section>
+
+      <section class="page" id="page-guides" data-page="guides">
+        <div class="page-intro"><div><p class="eyebrow">PENGETAHUAN YANG BISA DIPAKAI</p><h1>Panduan praktis</h1><p class="subheading">Bacaan ringkas untuk membantu menghadapi hal-hal sehari-hari.</p></div></div>
+        <div class="guide-feature"><div><span class="feature-tag">MULAI DARI YANG SEDERHANA</span><h2>Belajar satu hal baru<br>juga sebuah kemajuan.</h2><p>Panduan di sini dirancang sebagai titik awal. Sesuaikan dengan keadaan dan kebutuhanmu sendiri.</p></div><div class="feature-illustration" aria-hidden="true"><span>✦</span><i></i><b>ARAH</b></div></div>
+        <div class="guide-library" id="guide-library"></div>
+      </section>
+
+      <section class="page" id="page-ai" data-page="ai">
+        <div class="page-intro ai-page-intro">
+          <div><p class="eyebrow">TEMAN BERPIKIR DIGITAL</p><h1>Arah Cerdas</h1><p class="subheading">Tanyakan apa saja, minta penjelasan, atau susun ide menjadi langkah yang jelas.</p></div>
+          <div class="ai-status" id="ai-status"><span class="ai-status-dot"></span><span id="ai-status-text">Siap membantu</span></div>
+        </div>
+        <section class="ai-chat-shell" aria-label="Percakapan Arah Cerdas">
+          <div class="ai-chat-top"><div class="ai-avatar-mark">✧</div><div><strong>Arah Cerdas</strong><small>Asisten pribadi ARAH</small></div><button type="button" class="ai-new-chat" id="ai-new-chat">Percakapan baru</button></div>
+          <div class="ai-chat-log" id="ai-chat-log" aria-live="polite" aria-relevant="additions text">
+            <div class="ai-welcome" id="ai-welcome"><div class="ai-welcome-mark">✦</div><h2>Halo, aku Arah Cerdas.</h2><p>Ceritakan hal yang sedang kamu pikirkan. Aku akan membantu menjelaskannya dan menyusun langkah yang bisa kamu coba.</p><div class="ai-suggestions"><button type="button" data-ai-prompt="Bantu aku membuat rencana belajar yang teratur dan realistis.">Buat rencana belajar</button><button type="button" data-ai-prompt="Jelaskan topik yang sulit dengan bahasa sederhana dan contoh.">Jelaskan topik sulit</button><button type="button" data-ai-prompt="Bantu aku menentukan prioritas dari beberapa pekerjaan yang menumpuk.">Atur prioritas</button></div></div>
+          </div>
+          <form class="ai-composer" id="ai-chat-form">
+            <label class="sr-only" for="ai-chat-input">Tulis pesan untuk Arah Cerdas</label>
+            <textarea id="ai-chat-input" rows="1" maxlength="6000" placeholder="Tulis pertanyaanmu di sini…" autocomplete="off" required></textarea>
+            <button type="submit" id="ai-send-button" aria-label="Kirim pesan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 19 5l-4 14-3-6-7-1Z"/><path d="m12 13 7-8"/></svg></button>
+          </form>
+        </section>
+        <p class="ai-disclaimer">Arah Cerdas bisa membuat kesalahan. Periksa info penting.</p>
+        <p class="ai-privacy-note">Pesan yang kamu kirim diproses oleh layanan AI agar dapat dijawab. Jangan masukkan kata sandi, kode verifikasi, atau informasi pribadi yang sangat sensitif.</p>
+      </section>
+
+      <section class="page" id="page-settings" data-page="settings">
+        <div class="page-intro"><div><p class="eyebrow">KENDALI DI TANGANMU</p><h1>Pengaturan</h1><p class="subheading">Atur pengalaman dan kelola data yang tersimpan di perangkatmu.</p></div></div>
+        <div class="settings-layout">
+          <section class="settings-card"><div class="settings-title"><span class="settings-icon">◐</span><div><h3>Tampilan</h3><p>Sesuaikan kenyamanan membaca.</p></div></div><div class="setting-row"><div><b>Tema gelap</b><small>Gunakan tampilan yang lebih redup.</small></div><button class="toggle" id="theme-toggle" role="switch" aria-checked="false" aria-label="Tema gelap"><span></span></button></div><div class="setting-row"><div><b>Teks lebih besar</b><small>Perbesar ukuran tulisan di aplikasi.</small></div><button class="toggle" id="font-toggle" role="switch" aria-checked="false" aria-label="Teks lebih besar"><span></span></button></div></section>
+          <section class="settings-card"><div class="settings-title"><span class="settings-icon">⌁</span><div><h3>Data dan privasi</h3><p>Data ARAH disimpan secara lokal di browser ini.</p></div></div><div class="setting-row"><div><b>Unduh salinan data</b><small>Simpan langkah, catatan, dan rutinitas sebagai file.</small></div><button class="secondary-button" id="export-data">Ekspor data</button></div><div class="setting-row"><div><b>Pulihkan data</b><small>Impor file cadangan ARAH sebelumnya.</small></div><button class="secondary-button" id="import-data">Pilih file</button><input type="file" id="import-file" accept="application/json,.json" hidden></div><div class="setting-row danger-row"><div><b>Hapus semua data</b><small>Tindakan ini menghapus data ARAH di browser ini.</small></div><button class="danger-button" id="clear-data">Hapus data</button></div></section>
+          <section class="settings-card about-card"><div class="settings-title"><span class="settings-icon">✦</span><div><h3>Tentang ARAH</h3><p>Teman langkah sehari-hari.</p></div></div><p>ARAH adalah alat bantu pribadi untuk menyusun tujuan, mengelola tindakan, menyimpan catatan, dan membangun rutinitas. ARAH versi awal tidak mengirim data ke server dan tidak menggunakan AI cloud. Fitur penyusun langkah memakai pola lokal yang transparan, bukan model AI generatif.</p><div class="about-meta"><span>Versi 1.0.0</span><span>Offline-ready</span><span>Tanpa akun</span></div></section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Navigasi bawah">
+    <button class="mobile-nav-link active" data-nav="home"><span>⌂</span><small>Beranda</small></button>
+    <button class="mobile-nav-link" data-nav="ai"><span>✧</span><small>Arah Cerdas</small></button>
+    <button class="mobile-nav-link" data-nav="steps"><span>◷</span><small>Langkah</small><i id="mobile-step-dot"></i></button>
+    <button class="mobile-nav-link" data-nav="notes"><span>▤</span><small>Catatan</small></button>
+    <button class="mobile-nav-link" data-nav="habits"><span>✳</span><small>Rutinitas</small></button>
+    <button class="mobile-nav-link" data-nav="guides"><span>◇</span><small>Panduan</small></button>
+  </nav>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" id="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Tutup">×</button>
+      <div id="modal-body"></div>
+    </section>
+  </div>
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <div class="search-overlay" id="search-overlay" hidden>
+    <div class="search-box"><button class="modal-close" id="search-close" aria-label="Tutup pencarian">×</button><p class="eyebrow">CARI DI RUANGMU</p><h2>Apa yang ingin kamu temukan?</h2><div class="inline-search"><span>⌕</span><input id="global-search-input" type="search" placeholder="Cari langkah, catatan, panduan…" autocomplete="off"></div><div id="global-search-results" class="search-results"></div></div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
